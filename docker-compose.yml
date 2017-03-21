@@ -1,0 +1,10 @@
+version: '2'
+services:
+  dev-box:
+    container_name: dev-box
+    image: ubuntu:16.04
+    hostname: dev-box
+    ports:
+      - "8080:8080"
+    volumes:
+      - $USER_WORKSPACE:/home/brain
