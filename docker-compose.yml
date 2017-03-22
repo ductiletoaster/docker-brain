@@ -2,11 +2,12 @@ version: '2.1'
 services:
   dev-box:
     container_name: main-brain
+    hostname: main.brain
     build:
       context: ./dev-box
       dockerfile: Dockerfile
     volumes:
-      - $USER_WORKSPACE:/home/brain
+      - $USER_WORKSPACE:/mnt/workspace
     ports:
       - "8080:8080"
     tty: true
