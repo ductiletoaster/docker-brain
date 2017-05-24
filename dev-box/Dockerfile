@@ -28,17 +28,21 @@ RUN \
     php-gd \
     php-pgsql \
     php-intl \
+    php-xdebug \
     php-xmlrpc \
     phpunit \
     vim \
+  && curl -sL https://deb.nodesource.com/setup_6.x | bash - \
+  && apt-get -y \
+    install nodejs \
+    build-essential \
   && php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
   && php composer-setup.php \
   && mv composer.phar /usr/sbin/composer \
   && chmod a+x /usr/sbin/composer \
-  && groupadd brain \
-  && useradd -d /home/brain -m -s /bin/zsh brain \
+  && useradd -m -s /bin/zsh brain \
   && git clone git://github.com/robbyrussell/oh-my-zsh.git /home/brain/.oh-my-zsh \
-  && chown -R brain:brain /home/brain/.oh-my-zsh && \
+  && chown -R brain:brain /home/brain/.oh-my-zsh \
   && chmod 0755 /home/brain/.oh-my-zsh \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
