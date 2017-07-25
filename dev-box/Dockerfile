@@ -1,15 +1,17 @@
-FROM ubuntu:17.04
+FROM ubuntu:latest
 MAINTAINER Brian Gebel <briangeb@gmail.com>
 
 RUN \
   apt-get update \
+  && apt-get autoremove \
   && apt-get -y install \
+    grep \
     software-properties-common \
     python-software-properties \
+    build-essential \
     curl \
     git-core \
     zsh \
-    npm \
     memcached \
     php \
     php-bcmath \
@@ -32,21 +34,8 @@ RUN \
     php-xmlrpc \
     phpunit \
     vim \
-  && curl -sL https://deb.nodesource.com/setup_6.x | bash - \
-  && apt-get -y \
-    install nodejs \
-    build-essential \
-  && php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
-  && php composer-setup.php \
-  && mv composer.phar /usr/sbin/composer \
-  && chmod a+x /usr/sbin/composer \
-  && useradd -m -s /bin/zsh brain \
-  && git clone git://github.com/robbyrussell/oh-my-zsh.git /home/brain/.oh-my-zsh \
-  && chown -R brain:brain /home/brain/.oh-my-zsh \
-  && chmod 0755 /home/brain/.oh-my-zsh \
+  && curl -sS https://getcomposer.org/installer -o composer-setup.php \
+  && php composer-setup.php --install-dir=/usr/local/bin --filename=composer \
+  && sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)" \
   && apt-get clean \
   && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
-
-ADD config/.zshrc /home/brain
-
-USER brain
