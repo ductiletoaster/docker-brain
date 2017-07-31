@@ -1,8 +1,8 @@
 version: '2.1'
 services:
   dev-box:
-    container_name: main-brain
-    hostname: main.brain
+    container_name: dev-box
+    hostname: dev.box
     build:
       context: ./dev-box
       dockerfile: Dockerfile
