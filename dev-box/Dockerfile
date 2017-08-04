@@ -4,6 +4,8 @@ MAINTAINER Brian Gebel <briangeb@gmail.com>
 
 # Set Environment Variables & Language Environment
 ENV HOME /root
+ENV DEFAULT_USER root
+ENV USER root
 ENV LC_ALL en_US.UTF-8
 
 # Update Base System
@@ -35,6 +37,10 @@ RUN apt-get -y install \
 RUN git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh \
   && cp ~/.oh-my-zsh/templates/zshrc.zsh-template ~/.zshrc \
   && chsh -s /bin/zsh
+
+# Install Powerline fonts
+RUN git clone https://github.com/powerline/fonts.git ~/.powerline \
+  && ~/.powerline/install.sh
 
 # Install PHP and extensions
 RUN \
@@ -70,4 +76,6 @@ RUN apt-get autoremove \
   && apt-get clean 
 
 WORKDIR /root
+ADD config/.zshrc .zshrc
+
 CMD ["zsh"]
