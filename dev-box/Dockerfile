@@ -1,10 +1,11 @@
-FROM ubuntu:latest
-LABEL description="Base Image based on Ubuntu 16.04 Linux"
+FROM ubuntu:rolling
+LABEL description="Base Image based on Ubuntu 17.04 Linux"
 MAINTAINER Brian Gebel <briangeb@gmail.com>
 
 # Set Environment Variables & Language Environment
 ENV HOME /root
 ENV DEFAULT_USER root
+ENV TERM xterm
 ENV USER root
 ENV LC_ALL en_US.UTF-8
 
@@ -27,6 +28,7 @@ RUN apt-get -y install \
   man \
   unzip \
   nano \
+  ruby \
   memcached \
   tmux \
   colord \
@@ -41,6 +43,11 @@ RUN git clone git://github.com/robbyrussell/oh-my-zsh.git ~/.oh-my-zsh \
 # Install Powerline fonts
 RUN git clone https://github.com/powerline/fonts.git ~/.powerline \
   && ~/.powerline/install.sh
+
+# Install Node from update PPA
+RUN curl -sL https://deb.nodesource.com/setup_6.x -o nodesource_setup.sh \
+  && bash nodesource_setup.sh \
+  && apt-get install nodejs
 
 # Install PHP and extensions
 RUN \
