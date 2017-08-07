@@ -83,6 +83,7 @@ RUN apt-get autoremove \
   && apt-get clean 
 
 WORKDIR /root
+ADD config/.gitconfig .gitconfig
 ADD config/.zshrc .zshrc
 
 CMD ["zsh"]
