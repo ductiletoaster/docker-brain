@@ -21,6 +21,8 @@ RUN apt-get -y install \
   apt-utils \
   build-essential \
   software-properties-common \
+  python-pip \
+  python-dev \
   grep \
   wget \
   curl \
@@ -45,9 +47,9 @@ RUN git clone https://github.com/powerline/fonts.git ~/.powerline \
   && ~/.powerline/install.sh
 
 # Install Node from update PPA
-RUN curl -sL https://deb.nodesource.com/setup_6.x -o nodesource_setup.sh \
-  && bash nodesource_setup.sh \
-  && apt-get install nodejs
+# RUN curl -sL https://deb.nodesource.com/setup_6.x -o nodesource_setup.sh \
+#  && bash nodesource_setup.sh \
+#  && apt-get install nodejs
 
 # Install PHP and extensions
 RUN \
@@ -76,7 +78,11 @@ RUN \
     phpunit \
   && curl -sS https://getcomposer.org/installer -o composer-setup.php \
   && php composer-setup.php --install-dir=/usr/local/bin --filename=composer \
+  && rm composer-setup.php \
   && sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+
+# Install AWS CLI -- TODO Need to add to PATH
+RUN pip install awscli --upgrade --user
 
 # Clean up
 RUN apt-get autoremove \

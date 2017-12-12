@@ -51,7 +51,7 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(gitfast node npm)
+plugins=(gitfast)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -83,3 +83,7 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+
+# Docker and AWS CLI config
+# export DOCKER_HOST=tcp://0.0.0.0:2375
+export PATH=$PATH:$HOME/.local/bin
