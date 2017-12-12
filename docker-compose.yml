@@ -13,10 +13,14 @@ services:
     tty: true
   dev-docker:
     container_name: dev-docker
-    image: docker
+    hostname: dev.docker
+    build:
+      context: ./dev-docker
+      dockerfile: Dockerfile
     privileged: true
-    working_dir: "/dkr"
     volumes:
-      - ".:/dkr"
+      - $USER_WORKSPACE:/mnt/workspace
       - "/var/run/docker.sock:/var/run/docker.sock"
-    command: docker ps -a
+    ports:
+      - "23750:2375"
+    tty: true
