@@ -85,5 +85,5 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
 # Docker and AWS CLI config
-export DOCKER_HOST=tcp://0.0.0.0:2375
+#export DOCKER_HOST=tcp://0.0.0.0:2375
 export PATH=$PATH:$HOME/.local/bin

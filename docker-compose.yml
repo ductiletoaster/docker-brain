@@ -19,7 +19,7 @@ services:
       dockerfile: Dockerfile
     privileged: true
     volumes:
-      - $USER_WORKSPACE:/mnt/workspace
+      - $DRIVE_ROOT:/c
       - "/var/run/docker.sock:/var/run/docker.sock"
     ports:
       - "23750:2375"
