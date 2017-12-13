@@ -10,7 +10,6 @@ The brain center for all my development in docker
 #TODO: Look into smaller containers for php, node, etc
 #TODO: add config to load ssh keys
 #TODO: create .cmd or .ps1 files to make executing docker cmds easier
-#Not sure these should be seperate... but if they are then the AWS CLI and what not needs to live on the alpine container
 
 
 ### Dev Box
@@ -22,6 +21,6 @@ docker exec -it dev-box zsh
 ### Dev Docker
 To enter the docker development container use the following:
 ```
-docker exec -it dev-docker sh
+docker exec -it dev-docker bash
 ```
 Why do we need this? By having a container we can launch other docker containers from we also gain access to a full linux shell. If we aren't using WSL on windows this cana come in handy.
