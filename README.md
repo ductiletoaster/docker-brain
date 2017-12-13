@@ -1,17 +1,6 @@
 # docker-brain
 The brain center for all my development in docker
 
-#TODO: Setup Node
-#TODO: Add pip and awscli
-#TODO: create config for aws cli
-#TODO: install docker-ce so we can spin up other docker containers -- Need to install CLI in main and connect to other container
-	# We could probably then get rid of of the mount volumne in it
-# https://forums.docker.com/t/how-can-i-run-docker-command-inside-a-docker-container/337/6
-#TODO: Look into smaller containers for php, node, etc
-#TODO: add config to load ssh keys
-#TODO: create .cmd or .ps1 files to make executing docker cmds easier
-
-
 ### Dev Box
 To enter the ubuntu dev box make sure to customize the workspace in .env and then enter using:
 ```
@@ -23,4 +12,18 @@ To enter the docker development container use the following:
 ```
 docker exec -it dev-docker bash
 ```
-Why do we need this? By having a container we can launch other docker containers from we also gain access to a full linux shell. If we aren't using WSL on windows this cana come in handy.
+Why do we need this? By having a container we can launch other docker containers from we also gain access to a full linux shell. If we aren't using WSL on windows this can come in handy. 
+
+
+### Dev Git
+To use this container do the following:
+```
+docker run dev-git
+```
+#TODO: Document bin files for phpstorm 
+
+### Tasks
+#TODO: Move awscli and jq to dev-box
+#TODO: Make dev-docker a service for dev-box to call
+#TODO: Look into smaller containers for php, node, etc
+#TODO: Add config to load ssh keys for dev-git
