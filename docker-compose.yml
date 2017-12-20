@@ -21,7 +21,7 @@ services:
       dockerfile: Dockerfile
     privileged: true
     volumes:
-      - $DRIVE_ROOT:/c
+      - $DRIVE_ROOT:/mnt/c
       - "/var/run/docker.sock:/var/run/docker.sock"
     ports:
       - "23750:2375"
@@ -34,6 +34,7 @@ services:
       dockerfile: Dockerfile
     volumes:
       - $DRIVE_ROOT:/mnt/c
+    tty: true
   dev-php-7:
     container_name: dev-php-7.0
     image: dev-php-7.0

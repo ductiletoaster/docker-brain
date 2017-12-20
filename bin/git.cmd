@@ -37,9 +37,6 @@ if %drive%==Z set "drive=z"
 
 set "variable=/mnt/%drive%%variable%"
 
-echo "%variable%"
-echo %*
-
-docker run --rm -v dev-git "%variable%" %*
+docker-compose run dev-git "%variable%" %*
 
 @echo ON

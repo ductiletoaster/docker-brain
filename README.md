@@ -14,21 +14,16 @@ docker exec -it dev-docker bash
 ```
 Why do we need this? By having a container we can launch other docker containers from we also gain access to a full linux shell. If we aren't using WSL on windows this can come in handy. 
 
-
 ### Dev Git
 To use this container do the following:
 ```
-docker run dev-git
+docker-compose run dev-git [git parms]
 ```
-#TODO: Document bin files for phpstorm 
-#TODO: Make it work for the current active directory not whatever is set in config... might do this with the .cmd passing it in to docker instance
-#TODO: https://stackoverflow.com/questions/41485217/mount-current-directory-as-volume-in-docker-on-windows-10
-# Might need to mount entire C drive and then translate local execution path to absolute?
-#TODO: https://superuser.com/questions/1113385/convert-windows-path-for-windows-ubuntu-bash
-
-# Use test script to map directories
-# use entry point to pass directory path and arguments passed form CMD
-
+#TODO: Need git config and ssh keys
+```
+git config --global user.email "you@example.com"
+git config --global user.name "Your Name"
+```
 
 ### Tasks
 #TODO: Move awscli and jq to dev-box

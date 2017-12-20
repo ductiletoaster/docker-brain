@@ -1,2 +1,2 @@
 #!/bin/sh
-ls -al
+firstArg="$1" shift && cd "$firstArg" && git "$@"

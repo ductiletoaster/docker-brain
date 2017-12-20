@@ -4,8 +4,8 @@ RUN apk update \
 	&& apk upgrade \
 	&& apk add git
 
-RUN git --version
+WORKDIR /root
+COPY config/.gitconfig .gitconfig
+COPY scripts/entry.sh entry.sh
 
-COPY scripts/entry.sh /
-
-ENTRYPOINT ["/entry.sh"]
+ENTRYPOINT ["sh", "entry.sh"]
