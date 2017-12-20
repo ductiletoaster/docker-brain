@@ -1,7 +1,6 @@
 @echo OFF
-@echo %*>> %~dp0/logs/git.log
 
-set "variable=%CD%"
+set "variable=%*"
 
 set "drive=%variable:~0,1%"
 
@@ -38,8 +37,5 @@ if %drive%==Z set "drive=z"
 set "variable=/mnt/%drive%%variable%"
 
 echo "%variable%"
-echo %*
-
-docker run --rm -v dev-git "%variable%" %*
 
 @echo ON

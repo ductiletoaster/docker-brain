@@ -32,3 +32,11 @@ services:
     build:
       context: ./dev-git
       dockerfile: Dockerfile
+    volumes:
+      - $DRIVE_ROOT:/mnt/c
+  dev-php-7:
+    container_name: dev-php-7.0
+    image: dev-php-7.0
+    build:
+      context: ./dev-php-7.0
+      dockerfile: Dockerfile
