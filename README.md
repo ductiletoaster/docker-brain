@@ -19,13 +19,17 @@ To use this container do the following:
 ```
 docker-compose run dev-git [git parms]
 ```
-#TODO: Need git config and ssh keys
+#TODO: Need the below to use .env
 ```
 git config --global user.email "you@example.com"
 git config --global user.name "Your Name"
 ```
+#TODO: Need to use more secure method for whitelisting hosts for git/ssh
+```
+ssh-keyscan <host> >> ~/.ssh/known_hosts
+```
 
-### Tasks
+### General Tasks
 #TODO: Move awscli and jq to dev-box
 #TODO: Make dev-docker a service for dev-box to call
 #TODO: Look into smaller containers for php, node, etc
