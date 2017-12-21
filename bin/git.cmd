@@ -1,5 +1,6 @@
 @echo OFF
-@echo %*>> %~dp0/logs/git.log
+
+set bin=%~dp0
 
 set "variable=%CD%"
 
@@ -37,6 +38,8 @@ if %drive%==Z set "drive=z"
 
 set "variable=/mnt/%drive%%variable%"
 
-docker-compose run dev-git "%variable%" %*
+pushd "%bin%..\"
+docker-compose run --rm dev-git "%variable%" %*
+popd 
 
 @echo ON
