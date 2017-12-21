@@ -6,8 +6,13 @@ RUN apk update \
 
 WORKDIR /root
 
-# TODO: Need to add ssh keys or an ssh server?
 COPY config/.gitconfig .gitconfig
+COPY config/.ssh .ssh
+
+# Need to get these from .env
+RUN git config --global user.email "bgebel@gofundme.com"
+RUN git config --global user.name "Brian Gebel"
+
 COPY scripts/entry.sh entry.sh
 
 ENTRYPOINT ["sh", "entry.sh"]
