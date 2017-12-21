@@ -12,15 +12,15 @@ RUN rm -rf /var/lib/apt/lists/* \
 
 WORKDIR /root
 
-COPY config/.gitconfig .gitconfig
+# Copy and update ssh keys
 COPY config/.ssh .ssh
+RUN chmod 700 ~/.ssh && chmod 600 ~/.ssh/*
 
-# Need to set permissions on the .ssh
-# Need a way to save known_hosts :(
 # Need to get these from .env
+COPY config/.gitconfig .gitconfig
 RUN git config --global user.email "bgebel@gofundme.com"
 RUN git config --global user.name "Brian Gebel"
 
+# Setup entry point script
 COPY scripts/entry.sh entry.sh
-
 ENTRYPOINT ["sh", "entry.sh"]
