@@ -32,6 +32,7 @@ services:
       dockerfile: Dockerfile
     volumes:
       - $DRIVE_ROOT:/mnt/c
+      - "./share:/root/share"
     privileged: true
     ports:
       - "23750:2375"
@@ -46,6 +47,7 @@ services:
       dockerfile: Dockerfile
     volumes:
       - $DRIVE_ROOT:/mnt/c
+      - "./share:/root/share"
     depends_on:
       - dev-base
     tty: true
