@@ -39,7 +39,7 @@ if %drive%==Z set "drive=z"
 set "variable=/mnt/%drive%%variable%"
 
 pushd "%bin%..\"
-docker-compose run --rm dev-git "%variable%" %*
+docker-compose run --rm --no-deps dev-git "%variable%" %*
 popd 
 
 @echo ON

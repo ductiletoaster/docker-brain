@@ -1,27 +1,28 @@
 version: '3.4'
 services:
-  dev-package-home:
-    container_name: dev-package-home
-    image: dev-package-home
+  dev-base:
+    container_name: dev-base
+    image: dev-base
     build:
-      context: ./dev-package-home
+      context: ./dev-base
       dockerfile: Dockerfile
     volumes:
-      - home:/public
-  dev-box:
-    container_name: dev-box
-    hostname: dev.box
-    image: dev-box
-    build:
-      context: ./dev-box
-      dockerfile: Dockerfile
-    volumes:
-      - $USER_WORKSPACE:/mnt/workspace
-    ports:
-      - "8080:8080"
-    depends_on:
-      - dev-package-home
-    tty: true
+      - $DRIVE_ROOT:/mnt/c
+      - "./share:/root/share"
+  # dev-box:
+  #   container_name: dev-box
+  #   hostname: dev.box
+  #   image: dev-box
+  #   build:
+  #     context: ./dev-box
+  #     dockerfile: Dockerfile
+  #   volumes:
+  #     - $USER_WORKSPACE:/mnt/workspace
+  #   ports:
+  #     - "8080:8080"
+  #   depends_on:
+  #     - dev-base
+  #   tty: true
   dev-docker:
     container_name: dev-docker
     hostname: dev.docker
@@ -29,14 +30,13 @@ services:
     build:
       context: ./dev-docker
       dockerfile: Dockerfile
-    privileged: true
     volumes:
       - $DRIVE_ROOT:/mnt/c
-      - "/var/run/docker.sock:/var/run/docker.sock"
+    privileged: true
     ports:
       - "23750:2375"
     depends_on:
-      - dev-package-home
+      - dev-base
     tty: true
   dev-git:
     container_name: dev-git
@@ -46,9 +46,8 @@ services:
       dockerfile: Dockerfile
     volumes:
       - $DRIVE_ROOT:/mnt/c
-      - "./share:/root/share"
     depends_on:
-      - dev-package-home
+      - dev-base
     tty: true
   dev-php-7.0:
     container_name: dev-php-7.0
@@ -66,5 +65,3 @@ services:
       dockerfile: Dockerfile
     ports:
       - "9100:9000"
-volumes:
-    home:
