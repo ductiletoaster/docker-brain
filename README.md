@@ -36,9 +36,6 @@ To use this container do the following:
 ```
 docker-compose run --rm --no-deps dev-git [absolute path to repo] [git parms]
 ```
-
-- or -
-
 For convenience I created a simple windows patch script that acts as a wrapper for the above command and automatically takes the absolute path at execution and converts it to what docker/linux would expect.
 
 **Example**
