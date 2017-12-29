@@ -10,12 +10,13 @@ RUN apk update \
 RUN rm -rf /var/lib/apt/lists/* \
     && rm /var/cache/apk/*
 
-VOLUME ["/root/.ssh"]
+VOLUME ["/root/.tmp"]
+
 WORKDIR /root
 
 # Configure .ssh
-RUN chmod 700 .ssh \
-    && chmod -R 600 .ssh/
+COPY config/.ssh .ssh
+RUN chmod 700 ~/.ssh && chmod 600 ~/.ssh/*
 
 # Need to get these from .env
 COPY config/.gitconfig .gitconfig

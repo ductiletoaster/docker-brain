@@ -34,7 +34,7 @@ services:
       dockerfile: Dockerfile
     volumes:
       - $DRIVE_ROOT:/mnt/c
-      - "./dev-git/config/.ssh:/root/.ssh"
+      - "./tmp:/root/.tmp"
     tty: true
   dev-php-7.0:
     container_name: dev-php-7.0
