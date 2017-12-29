@@ -3,3 +3,6 @@
     symlinks = true
 [push]
     default = simple
+[user]
+    email = bgebel@gofundme.com
+    name = Brian Gebel
