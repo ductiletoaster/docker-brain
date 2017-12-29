@@ -1,5 +1,13 @@
-version: '2.1'
+version: '3.4'
 services:
+  dev-package-home:
+    container_name: dev-package-home
+    image: dev-package-home
+    build:
+      context: ./dev-package-home
+      dockerfile: Dockerfile
+    volumes:
+      - home:/public
   dev-box:
     container_name: dev-box
     hostname: dev.box
@@ -11,6 +19,8 @@ services:
       - $USER_WORKSPACE:/mnt/workspace
     ports:
       - "8080:8080"
+    depends_on:
+      - dev-package-home
     tty: true
   dev-docker:
     container_name: dev-docker
@@ -25,6 +35,8 @@ services:
       - "/var/run/docker.sock:/var/run/docker.sock"
     ports:
       - "23750:2375"
+    depends_on:
+      - dev-package-home
     tty: true
   dev-git:
     container_name: dev-git
@@ -34,7 +46,9 @@ services:
       dockerfile: Dockerfile
     volumes:
       - $DRIVE_ROOT:/mnt/c
-      - "./tmp:/root/.tmp"
+      - "./share:/root/share"
+    depends_on:
+      - dev-package-home
     tty: true
   dev-php-7.0:
     container_name: dev-php-7.0
@@ -52,3 +66,5 @@ services:
       dockerfile: Dockerfile
     ports:
       - "9100:9000"
+volumes:
+    home:

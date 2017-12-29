@@ -1,5 +1,0 @@
-[core]
-	autocrlf = true
-[oh-my-zsh]
-	hide-dirty = 1
-	hide-status = 1

@@ -1,3 +1,6 @@
+# Probably should be a better way -- OUTPUTS OTHER CRAP
+FROM dev-package-home:latest AS home
+
 FROM alpine:3.7
 
 # Install git and openssh
@@ -10,18 +13,13 @@ RUN apk update \
 RUN rm -rf /var/lib/apt/lists/* \
     && rm /var/cache/apk/*
 
-VOLUME ["/root/.tmp"]
-
-WORKDIR /root
+VOLUME ["/root/share"]
 
 # Configure .ssh
-COPY config/.ssh .ssh
+WORKDIR /root
+COPY --from=home /public ./
 RUN chmod 700 ~/.ssh && chmod 600 ~/.ssh/*
-
-# Need to get these from .env
-COPY config/.gitconfig .gitconfig
-RUN git config --global user.email "bgebel@gofundme.com"
-RUN git config --global user.name "Brian Gebel"
+RUN rm .gitignore
 
 # Setup entry point script
 COPY scripts/entry.sh entry.sh
